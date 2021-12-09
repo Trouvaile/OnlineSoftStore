@@ -47,9 +47,13 @@ block content
                     .products__priceProduct.products__oldPriceProduct=Product.price
                     .products__priceProduct.products__newPriceProduct=Product.newprice
                     .products__discount=Product.discount
-
-                .products__buttonsBox
-                    .products__buyButton(onClick=`buyProduct("${Product.category}","${Product._id}")`) MUA HÀNG
+                .products__quantilyBox Số lượng hàng còn trong kho: 
+                    span(id='products__quantily')= Product.quantily
+                if (Product.quantily > 0)
+                    .products__buttonsBox
+                        .products__buyButton(onClick=`buyProduct("${Product.category}","${Product._id}")`) MUA HÀNG
+                else
+                    .products__buyButton--disable MUA HÀNG
         //- ------------------------------------------------------------------------------------------------------------------------------------------------
 
         .products__describe

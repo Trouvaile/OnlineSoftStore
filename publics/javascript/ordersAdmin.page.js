@@ -19,22 +19,30 @@ const updateBtns = document.querySelectorAll(".updateStatusBtn");
     btn.addEventListener('click', () => {
         const orderID = document.querySelectorAll(".orderIDBox")[index].innerText;
         const chosenStatus = document.querySelectorAll(".chosenStatusBox")[index].value;
-        axios({
-            method: 'post',
-            url: `api/updateOrderStatus/${orderID}`,
-            data: {
-                "newStatus": chosenStatus,
-            }
-        })
-            .then(res => {
-                const alert = document.querySelector('.OrdersAmin__alert');
-                alert.querySelector('span').innerText = res.data;
-                alert.style.opacity = '1'
-                setTimeout(() => {
-                    alert.classList.remove('d-none');
-                }, 250)
+        if (chosenStatus === 'Hủy đơn') {
+            deleteOrder(orderID)
+        } else {
+            axios({
+                method: 'post',
+                url: `api/updateOrderStatus/${orderID}`,
+                data: {
+                    "newStatus": chosenStatus,
+                }
             })
-            .catch(err => console.log(err))
+                .then(res => {
+                    if (chosenStatus === 'Hoàn thành') {
+                        const element = document.getElementById(orderID)
+                        element.classList.add("d-none");
+                    }
+                    const alert = document.querySelector('.OrdersAmin__alert');
+                    alert.querySelector('span').innerText = res.data;
+                    alert.style.opacity = '1'
+                    setTimeout(() => {
+                        alert.classList.remove('d-none');
+                    }, 250)
+                })
+                .catch(err => console.log(err))
+        }
     })
 })
 

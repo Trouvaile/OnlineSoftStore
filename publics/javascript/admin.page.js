@@ -60,8 +60,27 @@ const deleteProduct = (id) => {
 const readPrice = () => {
     let price = document.getElementById("price").value
     let newPrice = document.getElementById("newprice")
-    newPrice.value = price
-    newPrice.innerHTML = price
+    let select = document.getElementById('disount')
+    let option = select.options[select.selectedIndex].value
+    let discount
+
+    if (option === '0% giảm giá') {
+        discount = 0
+    } else if (option === '10% giảm giá') {
+        discount = 10
+    } else if (option === '20% giảm giá') {
+        discount = 20
+    } else if (option === '30% giảm giá') {
+        discount = 30
+    } else if (option === '40% giảm giá') {
+        discount = 40
+    } else {
+        discount = 50
+    }
+    
+    let value = price - ((price * discount) / 100)
+    newPrice.value = value
+    newPrice.innerHTML = value
 }
 
 const discountChange = () => {

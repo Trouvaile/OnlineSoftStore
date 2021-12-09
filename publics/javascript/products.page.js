@@ -1,7 +1,7 @@
 const changePrice = value => {
     let priceList = document.querySelectorAll('.products__priceProduct')
     priceList = [...priceList]
-    const activePrice = 'products__showPriceProduct'
+    const activePrice = 'products__newPriceProduct'
     priceList.map((item, index) => {
         if(index == value) item.classList.add(activePrice)
         else item.classList.remove(activePrice)
@@ -17,7 +17,7 @@ const changePriceMacbook = value => {
     containers = [...containers]
 
 
-    const activePrice = 'products__showPriceProduct'
+    const activePrice = 'products__newPriceProduct'
     const activeColor = 'products__colorProductLineMacbookActive'
     const activeContainer = 'products__macbookContainerActive'
 
@@ -60,11 +60,14 @@ const readMore = () => {
 
 const changeVolume = type => {
     const volumeEl = document.getElementById('products__volume')
-    let volume = parseInt(volumeEl.innerText);
+    let quantily = parseInt(document.getElementById('products__quantily').innerText)
+    let volume = parseInt(volumeEl.innerText)
     switch(type){
         case 'add':
-            volume = volume + 1;
-            volumeEl.innerText = volume;
+            if (volume < quantily) {
+                volume = volume + 1;
+                volumeEl.innerText = volume;
+            }
             break;
         case 'subtract':
             if(volume > 1){
@@ -121,7 +124,7 @@ const addProductInCart = (category, productID) => {
     const volume = parseInt(document.getElementById('products__volume').innerText)
 
     const name = document.querySelector(".products__nameProduct").innerText
-    const priceStr = document.querySelector(".products__showPriceProduct").innerText
+    const priceStr = document.querySelector(".products__newPriceProduct").innerText
 
     const newProduct = {
         imageLink, category,

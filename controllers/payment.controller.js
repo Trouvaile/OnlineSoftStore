@@ -1,6 +1,7 @@
 const CartsModel = require('../models/Carts.model')
 const OrdersModel = require('../models/Orders.model')
 const toolFunctions = require('../functions/tools.function')
+const ProductsModel = require('../models/Products.model')
 
 
 
@@ -56,6 +57,13 @@ module.exports.makeOrder = async (req, res) => {
     const cartData = await toolFunctions.getProductsBySession(sessionCart.cart)
     const {editedCart, totalPrice, totalPriceStr} = cartData
     const paymentMethod = payment_method_COD ? "COD" : "Bank"
+
+    const filterByName = {name: editedCart[0].name}
+    let newQuantily = editedCart[0].quantily - editedCart[0].volume
+    const updateQuantilyByName = {quantily: newQuantily}
+    await ProductsModel.findOneAndUpdate(filterByName, updateQuantilyByName, {
+        returnOriginal: false
+    })
 
     const newOrder = await OrdersModel.create({
         user: user,

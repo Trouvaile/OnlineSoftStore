@@ -22,7 +22,7 @@ module.exports.sessionID = async (req, res, next) => {
             if(cart){
                 sessionCart = await toolsFunctions.getProductsBySession(cart)
                 sessionCart.editedCart = [...sessionCart.editedCart].map(product =>{
-                  const price = product.price
+                  const price = product.newprice
                   let newPrice = isNaN(price) ? price : priceFunctions.changeNumberToString(price)
                   const result =  {...product, price: newPrice}
                   return result;

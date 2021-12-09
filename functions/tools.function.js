@@ -45,8 +45,8 @@ const getProductsBySession = (cart) => {
             const filter = { "_id": productID }
             let product = await ProductsModel.findOne(filter)
             if (!isNaN(product.price)) {
-                totalPrice = totalPrice + (volume * product.price)
-                product.price = priceFunctions.changeNumberToString(product.price)
+                totalPrice = totalPrice + (volume * product.newprice)
+                product.price = priceFunctions.changeNumberToString(product.newprice)
             }
             totalQuantity = totalQuantity + volume
 
@@ -59,7 +59,7 @@ const getProductsBySession = (cart) => {
             setTimeout(() => {
                 count++;
                 if (result.length === cart.length) {
-                    console.log(`timing render cart: ${count} ms`)
+                    // console.log(`timing render cart: ${count} ms`)
                     resolve({
                         "editedCart": result.sort((a, b) => a.index - b.index),
                         "totalPrice": totalPrice,

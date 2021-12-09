@@ -70,7 +70,7 @@ module.exports.index = async (req, res, next) => {
         WindowProducts,
         GoogleProducts,
         CloudProducts,
-        role: req.admin.name
+        role: req.admin.role
     })
 }
 
@@ -123,7 +123,7 @@ module.exports.detailsOrder = async (req, res, next) => {
 }
 
 module.exports.updateOrderStatus = async (req, res, next) => {
-    const { orderID } = req.params;
+    const { orderID } = req.params
     const { newStatus } = req.body
     const filter = { orderID: orderID }
     await OrdersModel.updateOne(filter, { status: newStatus })
@@ -140,7 +140,13 @@ module.exports.deleteProduct = async (req, res, next) => {
 
 module.exports.deleteOrder = async (req, res, next) => {
     const { id } = req.params;
+    const filter = { orderID: id }
+    const getOrder = await OrdersModel.findOne(filter)
+    await ProductsModel.findOneAndUpdate({name: getOrder.cart[0].name}, {quantily: getOrder.cart[0].quantily + 1}, {
+        returnOriginal: false
+    })
     await OrdersModel.deleteOne({ orderID: id })
+
     res.send(`đơn hàng ${id} đã bị xoá`)
 }
 
@@ -160,7 +166,7 @@ module.exports.addProductIndex = async (req, res, next) => {
 module.exports.addProduct = async (req, res, next) => {
     let errors = [];
     const categoryList = ["Adobe", "Office", "Security", "Window", "Google", "Cloud"]
-    const { name, category, image, price, discount, newPrice, title, p1, p2, p3, p4 } = req.body
+    const { name, category, image, price, discount, newPrice, quantily, title, p1, p2, p3, p4 } = req.body
 
     if (name.length == 0) {
         errors.push("Tên sản phẩm không hợp lệ")
@@ -177,6 +183,10 @@ module.exports.addProduct = async (req, res, next) => {
 
     if (price.length == 0) {
         errors.push("Giá không hợp lệ")
+    }
+
+    if (parseInt(quantily) < 0) {
+        errors.push("Số lượng không hợp lệ")
     }
 
     if (title.length == 0) {
@@ -203,6 +213,7 @@ module.exports.addProduct = async (req, res, next) => {
             price: parseInt(price),
             discount,
             newprice: parseInt(newPrice),
+            quantily: parseInt(quantily),
             mtsp,
         }
 
@@ -266,9 +277,7 @@ module.exports.updateProduct = async (req, res, next) => {
 
     let errors = [];
     const categoryList = ["Adobe", "Office", "Security", "Window", "Google", "Cloud"]
-    const { name, category, image, price, discount, newPrice, title, p1, p2, p3, p4 } = req.body
-
-    console.log(req.body)
+    const { name, category, image, price, discount, newPrice, quantily, title, p1, p2, p3, p4 } = req.body
 
     if (name.length == 0) {
         errors.push("Tên sản phẩm không hợp lệ")
@@ -285,7 +294,10 @@ module.exports.updateProduct = async (req, res, next) => {
 
     if (price.length == 0) {
         errors.push("Giá không hợp lệ")
+    }
 
+    if (parseInt(quantily) < 0) {
+        errors.push("Số lượng không hợp lệ")
     }
 
     if (title.length == 0) {
@@ -321,6 +333,7 @@ module.exports.updateProduct = async (req, res, next) => {
             price: parseInt(price),
             discount,
             newprice: parseInt(newPrice),
+            quantily: parseInt(quantily),
             mtsp,
         }
 

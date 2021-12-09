@@ -10,8 +10,6 @@ block content
             ul.navbar-nav.mr-auto
                 li.nav-item
                     a(href="/admin").btn.nav-link Danh sách
-                li.nav-item
-                    a(href="/admin/addProduct").btn.nav-link Thêm sản phẩm
                 li.nav-item.active
                     a(href="/admin/orders").btn.nav-link Đơn hàng
 
@@ -57,6 +55,11 @@ block content
                                     option(value="Hoàn thành" selected) Hoàn thành
                                 else 
                                     option(value="Hoàn thành" ) Hoàn thành
+                                
+                                if(order.status === "Hủy đơn")
+                                    option(value="Hủy đơn" selected) Hủy đơn
+                                else 
+                                    option(value="Hủy đơn" ) Hủy đơn
                             button.updateStatusBtn.btn.btn-primary(style="margin-left: 24px" type="submit") Cập nhật
 
                         td= order.totalPrice

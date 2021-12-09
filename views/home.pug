@@ -74,6 +74,27 @@ block content
 
 
         .Home__slider
+            a(href="/products/discount").Home__sliderTitleBox
+                .Home__sliderLeftTitleBox
+                    //- .Home__sliderIcon.Home__slideriPhoneIcon
+                    .Home__sliderTitle Discount
+                .Home__sliderRightTitleBox
+                    .Home__sliderSeeAll Xem tất cả
+                    .Home__sliderRightArrow
+            //- swiper
+            ul.Home__sliderSwiperContainer
+                .swiper-wrapper
+                    each product in DiscountProducts
+                        li.Home__sliderSwiperSlide.swiper-slide
+                                a(href=`/products/${product.category}/${product.name}`).Home__sliderProductImageBox
+                                    img(src=product.img[0] alt=product.name)
+                                .Home__sliderProductContentBox
+                                    a(href=`/products/${product.category}/${product.name}`).Home__sliderProductName.card-title= product.name
+                                    a(href=`/products/${product.category}/${product.name}`).Home__sliderProductPrice= product.newprice
+                //- Add pagination
+                .Home__sliderSwiperPagination.swiper-pagination
+
+        .Home__slider
             a(href="/categories/Adobe").Home__sliderTitleBox
                 .Home__sliderLeftTitleBox
                     //- .Home__sliderIcon.Home__slideriPhoneIcon

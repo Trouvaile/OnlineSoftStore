@@ -10,7 +10,7 @@ const products_Schema = new mongoose.Schema({
     mtsp: String,
     newprice: Number,
     discount: String,
-    quanlity: Number,
+    quantily: Number,
 })
 
 const Products = mongoose.model('Products', products_Schema, 'Products');

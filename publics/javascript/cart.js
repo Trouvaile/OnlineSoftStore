@@ -68,7 +68,8 @@ const removeProductInCart = () => {
 }
 
 const updateCart = (position, calculation) => {
-    let chosenEle = document.querySelectorAll('.Navigation__cartPageContent li')[position];
+    let chosenEle = document.querySelectorAll('.Navigation__cartPageContent li')[position]
+    let quantily = parseInt(document.getElementById('products__quantily').innerText)
     let volumeBox = chosenEle.querySelector('.Navigation__cartVolume')
     let priceProduct = chosenEle.querySelector('p:last-child').innerText
     let numberInProduct = parseInt(volumeBox.innerText)
@@ -82,9 +83,11 @@ const updateCart = (position, calculation) => {
         }
         break;
       case 'increase':
-        volumeBox.innerText = numberInProduct + 1;
-        updateTotalQuantity(1)
-        updateTotalPrice(priceProduct, 1)
+        if (numberInProduct < quantily) {
+          volumeBox.innerText = numberInProduct + 1;
+          updateTotalQuantity(1)
+          updateTotalPrice(priceProduct, 1)
+        }
         break;
       case 'remove':
         updateTotalQuantity(numberInProduct * -1)

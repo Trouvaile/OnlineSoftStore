@@ -30,3 +30,9 @@ module.exports.search = async (req, res, next)  => {
     Products = priceFunctions.changePriceToString_Products(Products);
     res.render('./products/search', { Products, searchName: searchName })
 }
+
+module.exports.discount = async (req, res, next) => {
+    let Products = await ProductsModel.find({discount: {$ne: '0% giảm giá'}})
+    Products = priceFunctions.changePriceToString_Products(Products);
+    res.render('./products/discount', {Products})
+}

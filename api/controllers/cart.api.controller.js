@@ -18,7 +18,7 @@ module.exports.updateOneCart = async function (req, res) {
             "sessionID": sessionID,
             "cart": [req.body]
         })
-        console.log(`a new cart with sessionID: ${sessionID} is created`);
+        // console.log(`a new cart with sessionID: ${sessionID} is created`);
     } else {
         let newProduct = true;
         let updatedCart = cart.cart.map(item => {
@@ -34,7 +34,7 @@ module.exports.updateOneCart = async function (req, res) {
         })
         if (newProduct) updatedCart.push(req.body)
         newCart = await CartsModel.updateOne(filter, { cart: updatedCart })
-        console.log(`cart with sessionID: ${sessionID} is updated `);
+        // console.log(`cart with sessionID: ${sessionID} is updated `);
     }
     res.json(newCart)
 }

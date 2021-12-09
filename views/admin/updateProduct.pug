@@ -45,19 +45,45 @@ block content
                 input#image.form-control(name="image" value=`${Product.img[0]}`)
             .mb-3
                 label.form-label(for='price' ) Price
-                input#price.form-control(name="price" type="number" value=`${Product.price}`)
+                input#price.form-control(name="price" type="number" value=`${Product.price}` onchange='readPrice()')
             .mb-3
                 label.form-label(for='discount' ) Discount: 
                 select#disount(name="discount" form='updateproduct' onchange="discountChange()" value=`${Product.discount}`)
-                    option(value='0% giảm giá') 0% giảm giá
-                    option(value='10% giảm giá') 10% giảm giá
-                    option(value='20% giảm giá') 20% giảm giá
-                    option(value='30% giảm giá') 30% giảm giá
-                    option(value='40% giảm giá') 40% giảm giá
-                    option(value='50% giảm giá') 50% giảm giá
+                    if(Product.discount === '0% giảm giá')
+                        option(value='0% giảm giá' selected) 0% giảm giá
+                    else
+                        option(value='0% giảm giá') 0% giảm giá
+                    
+                    if(Product.discount === '10% giảm giá')
+                        option(value='10% giảm giá' selected) 10% giảm giá
+                    else
+                        option(value='10% giảm giá') 10% giảm giá
+                    
+                    if(Product.discount === '20% giảm giá')
+                        option(value='20% giảm giá' selected) 20% giảm giá
+                    else
+                        option(value='20% giảm giá') 20% giảm giá
+
+                    if(Product.discount === '30% giảm giá')
+                        option(value='30% giảm giá' selected) 30% giảm giá
+                    else
+                        option(value='30% giảm giá') 30% giảm giá
+
+                    if(Product.discount === '40% giảm giá')
+                        option(value='40% giảm giá' selected) 40% giảm giá
+                    else
+                        option(value='40% giảm giá') 40% giảm giá
+
+                    if(Product.discount === '50% giảm giá')
+                        option(value='50% giảm giá' selected) 50% giảm giá
+                    else
+                        option(value='50% giảm giá') 50% giảm giá
             .mb-3
                 label.form-label(for='price' ) New Price
                 input#newprice.form-control(name="newPrice" type="number" value=`${Product.newprice}` readonly)
+            .mb-3
+                label.form-label(for='quantily') Quantily
+                input#quantily.form-control(name="quantily" type="number" value=`${Product.quantily}`)   
             .mb-3
                 label.form-label Describe
 
