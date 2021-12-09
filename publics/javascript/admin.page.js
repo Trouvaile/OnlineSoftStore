@@ -12,7 +12,7 @@ TablesButton.forEach( (model, index) => {
             tableEle.add('d-none')
         }
 
-        const classes = e.toElement.classList
+        const classes = e.path[0].classList
         classes.add('active')
         classes.toggle('text-dark')
         ModelTables[index].classList.remove('d-none')
@@ -55,4 +55,40 @@ const deleteProduct = (id) => {
         })
         .catch(err => console.log(err))
     }
+}
+
+const readPrice = () => {
+    let price = document.getElementById("price").value
+    let newPrice = document.getElementById("newprice")
+    newPrice.value = price
+    newPrice.innerHTML = price
+}
+
+const discountChange = () => {
+    let select = document.getElementById('disount')
+    let option = select.options[select.selectedIndex].value
+    let discount
+
+    let price = document.getElementById("price").value
+    if (price) {
+        if (option === '0% giảm giá') {
+            discount = 0
+        } else if (option === '10% giảm giá') {
+            discount = 10
+        } else if (option === '20% giảm giá') {
+            discount = 20
+        } else if (option === '30% giảm giá') {
+            discount = 30
+        } else if (option === '40% giảm giá') {
+            discount = 40
+        } else {
+            discount = 50
+        }
+
+        let newPrice = document.getElementById("newprice")
+        let value = price - ((price * discount) / 100)
+        newPrice.value = value
+        newPrice.innerHTML = value
+    }
+
 }

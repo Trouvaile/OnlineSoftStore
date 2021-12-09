@@ -185,6 +185,11 @@
                 }
 
 
+            .products__priceProductContainer {
+                display: flex;
+                flex-direction: row;
+                align-items: flex-end;
+            }
 
             .products__priceProduct{
                 font-size: 28px;
@@ -194,11 +199,29 @@
                 display: none;
             }
 
-            .products__showPriceProduct {
+            .products__oldPriceProduct {
+                display: block;
+                color:#555;
+                text-decoration: line-through;
+                margin-right: 10px;
+            }
+
+            .products__newPriceProduct {
                 display: block;
             }
 
-
+            .products__discount {
+                color: #fff;
+                background: #ee4d2d;
+                text-transform: uppercase;
+                padding: 2px 4px;
+                white-space: nowrap;
+                margin-left: 10px;
+                margin-bottom: 15px;
+                font-size: 70%;
+                border-radius: 5px;
+                height: fit-content;
+            }
 
             .products__volumeBox{
                 display: flex;

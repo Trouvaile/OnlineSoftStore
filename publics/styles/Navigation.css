@@ -30,6 +30,24 @@
             display: block;
         }
 
+        .Navigation__search {
+            display: flex;
+            flex-direction: row;
+            height: 35px;
+            width: 400px;
+        }
+
+            .form-inline {
+                margin-block-end: 0px;
+                width: 100%;
+            }
+
+            .form-control {
+                margin-right: 10px;
+                width: 60%;
+                height: 100%;
+            }
+
         .Navigation__links{
             display: flex;
             align-items: center;

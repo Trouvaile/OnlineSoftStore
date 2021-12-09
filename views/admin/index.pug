@@ -11,14 +11,17 @@ block content
             ul.navbar-nav.mr-auto
                 li.nav-item.active
                     a(href="/admin").btn.nav-link Danh sách
-                li.nav-item
-                    a(href="/admin/addProduct").btn.nav-link Thêm sản phẩm
-                li.nav-item
-                    a(href="/admin/orders").btn.nav-link Đơn hàng
+                if role=='admin'
+                    li.nav-item
+                        a(href="/admin/addProduct").btn.nav-link Thêm sản phẩm
+                    li.nav-item
+                        a(href="/admin/orders").btn.nav-link Đơn hàng
 
-            //- form.form-inline.my-2.my-lg-0
-            //-     input.form-control.mr-sm-2(type='search' placeholder='Nhập tên sản phẩm' aria-label='Tìm kiếm')
-            //-     button.btn.btn-outline-light(type='submit') Tìm kiếm
+            form.form-inline.my-2.my-lg-0
+                input.form-control.mr-sm-2(type='search' placeholder='Nhập tên sản phẩm' aria-label='Tìm kiếm')
+                button.btn.btn-outline-light(type='submit') Tìm kiếm
+            form.form-inline.my-2.my-lg-0(action="/admin/logout" method="post")
+                button#logout.btn.btn-outline-light.my-2.my-sm-0(type="submit") Đăng xuất
 
 
 
@@ -43,8 +46,11 @@ block content
                     th Tên
                     //- th Dòng
                     th Ảnh
-                    th Giá
-                    th Chỉnh sửa
+                    th Giá gốc
+                    th Giá bán
+                    th Số lượng
+                    if role=='admin'
+                        th Chỉnh sửa
             tbody 
                 each product in AdobeProducts
                     tr(id=`${product._id}`) 
@@ -54,11 +60,13 @@ block content
                             each img in product.img
                                 img(src=img)
                         td= product.price
+                        td= product.newprice
+                        td= product.quantily
                                 
-
-                        td.admin__tableButtonBox
-                            a.btn.btn-link(href=`admin/updateProduct/${product._id}`) Sửa 
-                            button.btn.btn-link(onclick=`deleteProduct("${product._id}")`) Xoá
+                        if role=='admin'
+                            td.admin__tableButtonBox
+                                a.btn.btn-link(href=`admin/updateProduct/${product._id}`) Sửa 
+                                button.btn.btn-link(onclick=`deleteProduct("${product._id}")`) Xoá
 
 
     .admin__tableContainer.d-none
@@ -70,8 +78,11 @@ block content
                     th Tên
                     //- th Dòng
                     th Ảnh
-                    th Giá
-                    th Chỉnh sửa
+                    th Giá gốc
+                    th Giá bán
+                    th Số lượng
+                    if role=='admin'
+                        th Chỉnh sửa
             tbody 
                 each product in OfficeProducts
                     tr(id=`${product._id}`)
@@ -81,11 +92,14 @@ block content
                             each img in product.img
                                 img(src=img)
                         td= product.price
+                        td= product.newprice
+                        td= product.quantily
                                 
 
-                        td.admin__tableButtonBox
-                            a.btn.btn-link(href=`admin/updateProduct/${product._id}`) Sửa 
-                            button.btn.btn-link(onclick=`deleteProduct("${product._id}")`) Xoá
+                        if role=='admin'
+                            td.admin__tableButtonBox
+                                a.btn.btn-link(href=`admin/updateProduct/${product._id}`) Sửa 
+                                button.btn.btn-link(onclick=`deleteProduct("${product._id}")`) Xoá
 
 
     .admin__tableContainer.d-none
@@ -97,8 +111,11 @@ block content
                     th Tên
                     //- th Dòng
                     th Ảnh
-                    th Giá
-                    th Chỉnh sửa
+                    th Giá gốc
+                    th Giá bán
+                    th Số lượng
+                    if role=='admin'
+                        th Chỉnh sửa
             tbody 
                 each product in SecurityProducts
                     tr(id=`${product._id}`)
@@ -108,11 +125,14 @@ block content
                             each img in product.img
                                 img(src=img)
                         td= product.price
+                        td= product.newprice
+                        td= product.quantily
                                 
 
-                        td.admin__tableButtonBox
-                            a.btn.btn-link(href=`admin/updateProduct/${product._id}`) Sửa 
-                            button.btn.btn-link(onclick=`deleteProduct("${product._id}")`) Xoá
+                        if role=='admin'
+                            td.admin__tableButtonBox
+                                a.btn.btn-link(href=`admin/updateProduct/${product._id}`) Sửa 
+                                button.btn.btn-link(onclick=`deleteProduct("${product._id}")`) Xoá
 
 
     .admin__tableContainer.d-none
@@ -124,8 +144,11 @@ block content
                     th Tên
                     //- th Dòng
                     th Ảnh
-                    th Giá
-                    th Chỉnh sửa
+                    th Giá gốc
+                    th Giá bán
+                    th Số lượng
+                    if role=='admin'
+                        th Chỉnh sửa
             tbody 
                 each product in WindowProducts
                     tr(id=`${product._id}`)
@@ -135,11 +158,13 @@ block content
                             each img in product.img
                                 img(src=img)
                         td= product.price
+                        td= product.newprice
+                        td= product.quantily
                                 
-
-                        td.admin__tableButtonBox
-                            a.btn.btn-link(href=`admin/updateProduct/${product._id}`) Sửa 
-                            button.btn.btn-link(onclick=`deleteProduct("${product._id}")`) Xoá
+                        if role=='admin'
+                            td.admin__tableButtonBox
+                                a.btn.btn-link(href=`admin/updateProduct/${product._id}`) Sửa 
+                                button.btn.btn-link(onclick=`deleteProduct("${product._id}")`) Xoá
 
 
     .admin__tableContainer.d-none
@@ -151,8 +176,11 @@ block content
                     th Tên
                     //- th Dòng
                     th Ảnh
-                    th Giá
-                    th Chỉnh sửa
+                    th Giá gốc
+                    th Giá bán
+                    th Số lượng
+                    if role=='admin'
+                        th Chỉnh sửa
             tbody 
                 each product in GoogleProducts
                     tr(id=`${product._id}`)
@@ -162,11 +190,13 @@ block content
                             each img in product.img
                                 img(src=img)
                         td= product.price
+                        td= product.newprice
+                        td= product.quantily
                                 
-
-                        td.admin__tableButtonBox
-                            a.btn.btn-link(href=`admin/updateProduct/${product._id}`) Sửa 
-                            button.btn.btn-link(onclick=`deleteProduct("${product._id}")`) Xoá
+                        if role=='admin'
+                            td.admin__tableButtonBox
+                                a.btn.btn-link(href=`admin/updateProduct/${product._id}`) Sửa 
+                                button.btn.btn-link(onclick=`deleteProduct("${product._id}")`) Xoá
 
 
     .admin__tableContainer.d-none
@@ -178,8 +208,11 @@ block content
                     th Tên
                     //- th Dòng
                     th Ảnh
-                    th Giá
-                    th Chỉnh sửa
+                    th Giá gốc
+                    th Giá bán
+                    th Số lượng
+                    if role=='admin'
+                        th Chỉnh sửa
             tbody 
                 each product in CloudProducts
                     tr(id=`${product._id}`)
@@ -189,12 +222,14 @@ block content
                             each img in product.img
                                 img(src=img)
                         td= product.price
+                        td= product.newprice
+                        td= product.quantily
                                 
 
-                            
-                        td.admin__tableButtonBox
-                            a.btn.btn-link(href=`admin/updateProduct/${product._id}`) Sửa 
-                            button.btn.btn-link(onclick=`deleteProduct("${product._id}")`) Xoá
+                        if role=='admin'  
+                            td.admin__tableButtonBox
+                                a.btn.btn-link(href=`admin/updateProduct/${product._id}`) Sửa 
+                                button.btn.btn-link(onclick=`deleteProduct("${product._id}")`) Xoá
     //- Loading cart
     script(src="/javascript/admin.page.js")
 

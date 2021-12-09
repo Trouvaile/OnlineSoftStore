@@ -17,7 +17,16 @@ module.exports.index = async (req, res, next)  => {
 
     const Product = await ProductsModel.findOne({"category": categoriesName, name: productsName})
     const price = priceFunctions.changeNumberToString(Product.price)
+    const newprice = priceFunctions.changeNumberToString(Product.newprice)
     res.render('./products/index', {
-        Product: { ...Product._doc, price}
+        Product: { ...Product._doc, price, newprice}
     })
+}
+
+module.exports.search = async (req, res, next)  => {
+    const { searchName } = req.body
+
+    let Products = await ProductsModel.find({name: { $regex: '.*' + searchName + '.*' } });
+    Products = priceFunctions.changePriceToString_Products(Products);
+    res.render('./products/search', { Products, searchName: searchName })
 }

@@ -46,7 +46,18 @@ block content
             .mb-3
                 label.form-label(for='price' ) Price
                 input#price.form-control(name="price" type="number" value=`${Product.price}`)
-
+            .mb-3
+                label.form-label(for='discount' ) Discount: 
+                select#disount(name="discount" form='addproduct' onchange="discountChange()" value=`${Product.discount}`)
+                    option(value='0% giảm giá') 0% giảm giá
+                    option(value='10% giảm giá') 10% giảm giá
+                    option(value='20% giảm giá') 20% giảm giá
+                    option(value='30% giảm giá') 30% giảm giá
+                    option(value='40% giảm giá') 40% giảm giá
+                    option(value='50% giảm giá') 50% giảm giá
+            .mb-3
+                label.form-label(for='price' ) New Price
+                input#newprice.form-control(name="newPrice" type="number" value=`${Product.newprice}` readonly)
             .mb-3
                 label.form-label Describe
 
@@ -70,3 +81,5 @@ block content
                     input#p4.form-control(name="p4" value=`${p4}`)
 
             button.btn.btn-primary(type='submit') Submit
+
+    script(src="/javascript/admin.page.js")

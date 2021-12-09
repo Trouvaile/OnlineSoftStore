@@ -43,8 +43,10 @@ block content
                     span.material-icons(onClick="changeVolume('subtract')") remove
                     span(id='products__volume') 1
                     span.material-icons(onClick="changeVolume('add')") add
-                
-                .products__priceProduct.products__showPriceProduct=Product.price
+                .products__priceProductContainer
+                    .products__priceProduct.products__oldPriceProduct=Product.price
+                    .products__priceProduct.products__newPriceProduct=Product.newprice
+                    .products__discount=Product.discount
 
                 .products__buttonsBox
                     .products__buyButton(onClick=`buyProduct("${Product.category}","${Product._id}")`) MUA HÀNG

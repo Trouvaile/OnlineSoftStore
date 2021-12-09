@@ -4,8 +4,9 @@ const controller = require('../controllers/admin.controller.js');
 const authMiddleware = require('../middlewares/auth.middleware')
 
 router.get('/', authMiddleware.auth ,controller.index)
-router.get('/login', controller.login);
-router.post('/login', controller.checkLogin);
+router.get('/login', controller.login)
+router.post('/login', controller.checkLogin)
+router.post('/logout', controller.logout)
 
 router.get('/orders', authMiddleware.auth, controller.orders)
 router.get('/details/:orderID', authMiddleware.auth, controller.detailsOrder)

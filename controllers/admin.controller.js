@@ -39,7 +39,15 @@ module.exports.checkLogin = async (req, res, next) => {
         res.status(400).send(error)
     }
 }
+
+module.exports.logout = async (req, res, next) => {
+    req.signedCookies.Authorization = null
+    res.clearCookie('Authorization')
+    res.redirect('/admin')
+}
+
 module.exports.index = async (req, res, next) => {
+
     let AdobeProducts = await ProductsModel.find({ category: "Adobe" });
     let OfficeProducts = await ProductsModel.find({ category: "Office" });
     let SecurityProducts = await ProductsModel.find({ category: "Security" });
@@ -62,6 +70,7 @@ module.exports.index = async (req, res, next) => {
         WindowProducts,
         GoogleProducts,
         CloudProducts,
+        role: req.admin.name
     })
 }
 
@@ -151,7 +160,7 @@ module.exports.addProductIndex = async (req, res, next) => {
 module.exports.addProduct = async (req, res, next) => {
     let errors = [];
     const categoryList = ["Adobe", "Office", "Security", "Window", "Google", "Cloud"]
-    const { name, category, image, price, title, p1, p2, p3, p4 } = req.body
+    const { name, category, image, price, discount, newPrice, title, p1, p2, p3, p4 } = req.body
 
     if (name.length == 0) {
         errors.push("Tên sản phẩm không hợp lệ")
@@ -168,7 +177,6 @@ module.exports.addProduct = async (req, res, next) => {
 
     if (price.length == 0) {
         errors.push("Giá không hợp lệ")
-
     }
 
     if (title.length == 0) {
@@ -193,6 +201,8 @@ module.exports.addProduct = async (req, res, next) => {
             category,
             img: [image],
             price: parseInt(price),
+            discount,
+            newprice: parseInt(newPrice),
             mtsp,
         }
 
@@ -256,7 +266,7 @@ module.exports.updateProduct = async (req, res, next) => {
 
     let errors = [];
     const categoryList = ["Adobe", "Office", "Security", "Window", "Google", "Cloud"]
-    const { name, category, image, price, title, p1, p2, p3, p4 } = req.body
+    const { name, category, image, price, discount, newPrice, title, p1, p2, p3, p4 } = req.body
 
     if (name.length == 0) {
         errors.push("Tên sản phẩm không hợp lệ")
@@ -307,6 +317,8 @@ module.exports.updateProduct = async (req, res, next) => {
             category,
             img: [image],
             price: parseInt(price),
+            discount,
+            newprice: parseInt(newPrice),
             mtsp,
         }
 

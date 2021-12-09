@@ -50,6 +50,10 @@ html
         Navigation.Navigation
             .Navigation__box
                 a(href="/").Navigation__logo
+                .Navigation__search
+                    form(action=`/products/search` method="post").form-inline.my-2.my-lg-0
+                        input.form-control.mr-sm-2(type='search' name='searchName' placeholder='Nhập tên sản phẩm' aria-label='Tìm kiếm')
+                        button.btn.btn-outline-light(type='submit') Tìm kiếm
                 .Navigation__links
                     a(href="/categories/Adobe") Adobe
                     a(href="/categories/Office") Office

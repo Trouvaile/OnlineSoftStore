@@ -79,9 +79,11 @@ const changePriceToString_AirPodsProduct = ({_id, name, model, img, price}) => {
 const changePriceToString_Products = arr => {
     return arr.map(product => {
         const price = product.price
-        let newPrice = isNaN(price) ? price : changeNumberToString(price)
-        const result =  {...product._doc, price: newPrice}
-        return result;
+        let oldPrice = isNaN(price) ? newprice : changeNumberToString(price)
+        const newprice = product.newprice
+        let newPrice = isNaN(newprice) ? newprice : changeNumberToString(newprice)
+        const result =  {...product._doc, price: oldPrice, newprice: newPrice}
+        return result
     })
 }
 

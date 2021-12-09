@@ -8,6 +8,9 @@ const products_Schema = new mongoose.Schema({
     img: Array,
     price: Number,
     mtsp: String,
+    newprice: Number,
+    discount: String,
+    quanlity: Number,
 })
 
 const Products = mongoose.model('Products', products_Schema, 'Products');
