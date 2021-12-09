@@ -9,7 +9,7 @@ const Orders = require('../models/Orders.model')
 // const bcrypt = require('bcryptjs')
 // const Products = require('../models/Products.model')
 // const a = async () => {
-//     const password = await bcrypt.hash("PhamThanhDat12a7", 8)
+//     const password = await bcrypt.hash("123123123", 8)
 //     console.log(password)
 // }
 // a();
@@ -267,6 +267,8 @@ module.exports.updateProduct = async (req, res, next) => {
     let errors = [];
     const categoryList = ["Adobe", "Office", "Security", "Window", "Google", "Cloud"]
     const { name, category, image, price, discount, newPrice, title, p1, p2, p3, p4 } = req.body
+
+    console.log(req.body)
 
     if (name.length == 0) {
         errors.push("Tên sản phẩm không hợp lệ")

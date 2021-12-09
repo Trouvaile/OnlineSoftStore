@@ -33,7 +33,7 @@ block content
 
         h1.mt-3 Thêm sản phẩm
 
-        form(action=`/admin/updateProduct/${Product._id}` method="post")
+        form#updateproduct(action=`/admin/updateProduct/${Product._id}` method="post")
             .mb-3
                 label.form-label(for='name') Name
                 input#name.form-control(name="name" value=`${Product.name}`)
@@ -48,7 +48,7 @@ block content
                 input#price.form-control(name="price" type="number" value=`${Product.price}`)
             .mb-3
                 label.form-label(for='discount' ) Discount: 
-                select#disount(name="discount" form='addproduct' onchange="discountChange()" value=`${Product.discount}`)
+                select#disount(name="discount" form='updateproduct' onchange="discountChange()" value=`${Product.discount}`)
                     option(value='0% giảm giá') 0% giảm giá
                     option(value='10% giảm giá') 10% giảm giá
                     option(value='20% giảm giá') 20% giảm giá
