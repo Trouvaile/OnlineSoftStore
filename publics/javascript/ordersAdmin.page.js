@@ -45,7 +45,7 @@ const updateBtns = document.querySelectorAll(".updateStatusBtn");
 
 // xoa san pham
 const deleteOrder = (id) => {
-    const confirm = window.confirm('Bạn có chắc xoá sản phẩm chứ ?')
+    const confirm = window.confirm('Bạn có chắc xoá đơn hàng chứ ?')
 
     if (confirm) {
         axios.delete(`/admin/api/deleteOrder/${id}`)
