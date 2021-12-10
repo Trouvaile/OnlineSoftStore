@@ -14,7 +14,7 @@ block content
                     a(href="/admin").btn.nav-link Danh sách
                 li.nav-item
                     a(href="/admin/addProduct").btn.nav-link Thêm sản phẩm
-                li.nav-item.active
+                li.nav-item
                     a(href="/admin/orders").btn.nav-link Đơn hàng
 
 
@@ -31,7 +31,7 @@ block content
                             span=error
  
 
-        h1.mt-3 Thêm sản phẩm
+        h1.mt-3 Chỉnh sửa thông tin sản phẩm
 
         form#updateproduct(action=`/admin/updateProduct/${Product._id}` method="post")
             .mb-3

@@ -30,10 +30,6 @@ const updateBtns = document.querySelectorAll(".updateStatusBtn");
                 }
             })
                 .then(res => {
-                    if (chosenStatus === 'Hoàn thành') {
-                        const element = document.getElementById(orderID)
-                        element.classList.add("d-none");
-                    }
                     const alert = document.querySelector('.OrdersAmin__alert');
                     alert.querySelector('span').innerText = res.data;
                     alert.style.opacity = '1'

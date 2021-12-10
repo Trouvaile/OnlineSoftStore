@@ -142,7 +142,7 @@ module.exports.deleteOrder = async (req, res, next) => {
     const { id } = req.params;
     const filter = { orderID: id }
     const getOrder = await OrdersModel.findOne(filter)
-    await ProductsModel.findOneAndUpdate({name: getOrder.cart[0].name}, {quantily: getOrder.cart[0].quantily + 1}, {
+    await ProductsModel.findOneAndUpdate({name: getOrder.cart[0].name}, {quantily: getOrder.cart[0].quantily}, {
         returnOriginal: false
     })
     await OrdersModel.deleteOne({ orderID: id })
