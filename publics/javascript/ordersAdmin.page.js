@@ -20,7 +20,16 @@ const updateBtns = document.querySelectorAll(".updateStatusBtn");
         const orderID = document.querySelectorAll(".orderIDBox")[index].innerText;
         const chosenStatus = document.querySelectorAll(".chosenStatusBox")[index].value;
         if (chosenStatus === 'Hủy đơn') {
-            deleteOrder(orderID)
+            const confirm = window.confirm('Bạn có chắc xoá đơn hàng chứ ?')
+
+            if (confirm) {
+                axios.delete(`/admin/api/deleteOrder/${orderID}`)
+                    .then(() => {
+                        const element = document.getElementById(orderID)
+                        element.classList.add("d-none");
+                    })
+                    .catch(err => console.log(err))
+            }
         } else {
             axios({
                 method: 'post',
@@ -48,11 +57,7 @@ const deleteOrder = (id) => {
     const confirm = window.confirm('Bạn có chắc xoá đơn hàng chứ ?')
 
     if (confirm) {
-        axios.delete(`/admin/api/deleteOrder/${id}`)
-            .then(() => {
-                const element = document.getElementById(id)
-                element.classList.add("d-none");
-            })
-            .catch(err => console.log(err))
+        const element = document.getElementById(id)
+        element.classList.add("d-none");
     }
 }
